@@ -15,10 +15,6 @@
     box-sizing: border-box;
 }
 
-.painted {
-    background-color: black;
-}
-
 #resolution {
     display: flex;
     background-color: rgb(121, 7, 7);
