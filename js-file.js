@@ -61,34 +61,36 @@ function createCell(cellSize) {
     let redComponent, greenComponent, blueComponent;
     let newRed, newGreen, newBlue;
 
-    cell.addEventListener('mouseenter', () => {       
-        if (!cellPainted) {
-            red = Math.floor(Math.random() * 256)
-            green = Math.floor(Math.random() * 256)
-            blue = Math.floor(Math.random() * 256)
+    cell.addEventListener('mouseenter', () => {
+        if(paint) {       
+            if (!cellPainted) {
+                red = Math.floor(Math.random() * 256)
+                green = Math.floor(Math.random() * 256)
+                blue = Math.floor(Math.random() * 256)
 
-            redComponent = Math.floor(red / 10);
-            greenComponent = Math.floor(green / 10);
-            blueComponent = Math.floor(blue / 10);
+                redComponent = Math.floor(red / 10);
+                greenComponent = Math.floor(green / 10);
+                blueComponent = Math.floor(blue / 10);
 
-            let cellColor = `rgb(${red}, ${green}, ${blue})`;
-            cell.style.backgroundColor = cellColor;
-            cellPainted = true;
-        }
-        else {                                
-            if(newRed !== 0 || newGreen !== 0 || newBlue !== 0) {
-                timesPainted++;
-                newRed = red - redComponent * timesPainted;
-                newGreen = green - greenComponent * timesPainted;
-                newBlue = blue - blueComponent * timesPainted;
-
-                if(newRed < 0) newRed = 0;
-                if(newGreen < 0) newGreen = 0;
-                if(newBlue < 0) newBlue = 0;
-
-                let cellColor = `rgb(${newRed}, ${newGreen}, ${newBlue})`;
+                let cellColor = `rgb(${red}, ${green}, ${blue})`;
                 cell.style.backgroundColor = cellColor;
-            }            
+                cellPainted = true;
+            }
+            else {                                
+                if(newRed !== 0 || newGreen !== 0 || newBlue !== 0) {
+                    timesPainted++;
+                    newRed = red - redComponent * timesPainted;
+                    newGreen = green - greenComponent * timesPainted;
+                    newBlue = blue - blueComponent * timesPainted;
+
+                    if(newRed < 0) newRed = 0;
+                    if(newGreen < 0) newGreen = 0;
+                    if(newBlue < 0) newBlue = 0;
+
+                    let cellColor = `rgb(${newRed}, ${newGreen}, ${newBlue})`;
+                    cell.style.backgroundColor = cellColor;
+                }            
+            }
         }
     });
 
